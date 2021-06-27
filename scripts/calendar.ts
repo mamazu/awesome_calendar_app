@@ -1,4 +1,4 @@
-import { Appointment, formatTime } from './Model/Appointment'
+import { Appointment, formatTime } from './Model/Appointment.js'
 
 const appointments: Appointment[] = [
     new Appointment(
