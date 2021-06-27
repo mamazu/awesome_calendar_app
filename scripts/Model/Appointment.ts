@@ -1,6 +1,4 @@
-export function formatTime(durationInMilliSeconds: number): string {
-    let durationInSeconds = durationInMilliSeconds / 1000
-
+export function formatTime(durationInSeconds: number): string {
     let returnString = '';
     if (durationInSeconds > 3600) {
         const hours = Math.floor(durationInSeconds / 3600);
@@ -35,8 +33,8 @@ export class Appointment {
 
     getDuration(): string {
         let durationInMilliSeconds = (this.end.getTime() - this.start.getTime());
-
-        return formatTime(durationInMilliSeconds)
+        let durationInSeconds = durationInMilliSeconds / 1000
+        return formatTime(durationInSeconds)
     }
 
     getStart(): string {
