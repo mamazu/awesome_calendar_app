@@ -1,0 +1,58 @@
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .5em;
+}
+
+.day .day-of-week {
+    background-color: gray;
+    padding: .5em 0em;
+    margin-bottom: .5em;
+    text-align: center;
+    font-weight: bold;
+    min-width: 10.2em;
+}
+
+/** Appointment colors */
+.label-gray {
+    background: rgb(216,216,216);
+    background: linear-gradient(180deg, rgba(216,216,216,1) 0%, rgba(216,216,216,1) 56%, #fbf0d0 57%, #fbf0d0 100%);
+}
+
+.label-red {
+    background-color: #f8ceda;
+}
+
+.label-yellow {
+    background-color: #fbf0d0;
+}
+
+/** Appointment styles */
+.day .appointment {
+    padding: 0.5em;
+}
+
+.appointment .appointment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.appointment .appointment-body {
+    padding-top: .2em;
+    font-weight: bold;
+}
+
+/** Other classes */
+.gap, .unimportant {
+    color: #979797;
+}
+
+.gap {
+    text-align: center;
+}
