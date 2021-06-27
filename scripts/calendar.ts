@@ -1,3 +1,5 @@
+import { Appointment, formatTime } from './Model/Appointment.js'
+
 const appointments: Appointment[] = [
     new Appointment(
         new Date('2021-06-24 15:00:00'),
@@ -25,7 +27,7 @@ const appointments: Appointment[] = [
     ),
 ]
 
-function loadAppointments() {
+export function loadAppointments() {
     const dayElements = [...document.querySelectorAll('.day')]
     const appointmentsByDay: Appointment[][] = Array(7).map(() => [])
     for (let appointment of appointments) {
@@ -60,7 +62,7 @@ function generateAppointmentHTML(appointment: Appointment): HTMLElement {
     const template = document.querySelector('#appointment-template') as any
     const element = template.content.cloneNode(true);
 
-    element.querySelector('.start').innerText = appointment.getStart() + '...' + appointment.getEnd();
+    element.querySelector('.start').innerText = appointment.getStart() + ' … ' + appointment.getEnd();
     element.querySelector('.duration').innerText = appointment.getDuration()
     element.querySelector('.appointment').classList.add(`label-${appointment.label}`)
     element.querySelector('.appointment-body').innerText = appointment.name

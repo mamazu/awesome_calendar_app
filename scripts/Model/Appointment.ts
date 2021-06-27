@@ -1,4 +1,4 @@
-function formatTime(durationInMilliSeconds: number): string {
+export function formatTime(durationInMilliSeconds: number): string {
     let durationInSeconds = durationInMilliSeconds / 1000
 
     let returnString = '';
@@ -21,7 +21,9 @@ function formatTime(durationInMilliSeconds: number): string {
     return returnString
 }
 
-class Appointment {
+const locale = 'de-DE'
+
+export class Appointment {
 
     constructor(
         public start: Date,
@@ -38,10 +40,10 @@ class Appointment {
     }
 
     getStart(): string {
-        return this.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });;
+        return this.start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });;
     }
 
     getEnd(): string {
-        return this.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });;
+        return this.end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });;
     }
 }

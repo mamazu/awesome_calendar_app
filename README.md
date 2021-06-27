@@ -8,3 +8,7 @@ Still under development
 * Clone the repository
 * Run `npm install`
 * Run `npm run watch` to start the typescript compiler
+* Run `python2 -m SimpleHTTPServer` to start the web server
+
+## How to run tests
+* Run `npm run test`
