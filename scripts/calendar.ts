@@ -1,3 +1,5 @@
+import { Appointment, formatTime } from './Model/Appointment'
+
 const appointments: Appointment[] = [
     new Appointment(
         new Date('2021-06-24 15:00:00'),
@@ -25,7 +27,7 @@ const appointments: Appointment[] = [
     ),
 ]
 
-function loadAppointments() {
+export function loadAppointments() {
     const dayElements = [...document.querySelectorAll('.day')]
     const appointmentsByDay: Appointment[][] = Array(7).map(() => [])
     for (let appointment of appointments) {

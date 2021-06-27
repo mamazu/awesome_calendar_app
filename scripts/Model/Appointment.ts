@@ -1,4 +1,4 @@
-function formatTime(durationInMilliSeconds: number): string {
+export function formatTime(durationInMilliSeconds: number): string {
     let durationInSeconds = durationInMilliSeconds / 1000
 
     let returnString = '';
@@ -21,7 +21,7 @@ function formatTime(durationInMilliSeconds: number): string {
     return returnString
 }
 
-class Appointment {
+export class Appointment {
 
     constructor(
         public start: Date,
