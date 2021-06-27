@@ -1,0 +1,13 @@
+{
+    "extends": "@tsconfig/recommended",
+    "compilerOptions": {
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "dist",
+    "alwaysStrict": true,
+    },
+    "include": [
+        "scripts/**/*"
+    ],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+}

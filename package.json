@@ -1,0 +1,29 @@
+{
+  "name": "awesome_calendar_app",
+  "version": "1.0.0",
+  "description": "A calendar app",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.3.4"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npx tsc -w -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamazu/awesome_calendar_app.git"
+  },
+  "keywords": [
+    "calendar"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mamazu/awesome_calendar_app/issues"
+  },
+  "homepage": "https://github.com/mamazu/awesome_calendar_app#readme"
+}
