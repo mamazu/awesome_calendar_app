@@ -84,7 +84,7 @@ function generateAppointmentHTML(appointment: Appointment): HTMLElement {
     const template = document.querySelector('#appointment-template') as any
     const element = template.content.cloneNode(true);
 
-    element.querySelector('.start').innerText = appointment.getStart() + ' … ' + appointment.getEnd();
+    element.querySelector('.start').innerText = appointment.getStartTime() + ' … ' + appointment.getEndTime();
     element.querySelector('.duration').innerText = appointment.getDuration()
     element.querySelector('.appointment').classList.add(`label-${appointment.label}`)
     element.querySelector('.appointment-body').innerText = appointment.name

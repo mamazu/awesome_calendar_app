@@ -1,12 +1,12 @@
 export function formatTime(durationInSeconds: number): string {
     let returnString = '';
-    if (durationInSeconds > 3600) {
+    if (durationInSeconds >= 3600) {
         const hours = Math.floor(durationInSeconds / 3600);
         returnString += hours + 'h'
         durationInSeconds -= hours * 60 * 60;
     }
 
-    if (durationInSeconds > 60) {
+    if (durationInSeconds >= 60) {
         const minutes = Math.floor(durationInSeconds / 60);
         returnString += minutes + 'm'
         durationInSeconds -= minutes * 60;
@@ -19,9 +19,8 @@ export function formatTime(durationInSeconds: number): string {
     return returnString
 }
 
-const locale = 'de-DE'
-
 export class Appointment {
+    static locale = 'de-DE';
 
     constructor(
         public name: string,
@@ -37,11 +36,11 @@ export class Appointment {
         return formatTime(durationInSeconds)
     }
 
-    getStart(): string {
-        return this.start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });;
+    getStartTime(): string {
+        return this.start.toLocaleTimeString(Appointment.locale, { hour: '2-digit', minute: '2-digit' });;
     }
 
-    getEnd(): string {
-        return this.end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });;
+    getEndTime(): string {
+        return this.end.toLocaleTimeString(Appointment.locale, { hour: '2-digit', minute: '2-digit' });;
     }
 }
