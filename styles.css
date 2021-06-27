@@ -21,7 +21,6 @@
 /** Appointment colors */
 .label-gray {
     background: rgb(216,216,216);
-    background: linear-gradient(180deg, rgba(216,216,216,1) 0%, rgba(216,216,216,1) 56%, #fbf0d0 57%, #fbf0d0 100%);
 }
 
 .label-red {

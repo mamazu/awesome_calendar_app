@@ -10,59 +10,13 @@
     <title>Awesome Calendar App</title>
 </head>
 
-<body>
+<body onload="loadAppointments()">
     <div id="calendar">
         <div class="day">
             <div class="day-of-week">Monday</div>
-            <div class="appointment label-gray">
-                <div class="appointment-header">
-                    <div>10:00 &hellip; 10:20</div>
-                    <div class="unimportant">20m</div>
-                </div>
-                <div class="appointment-body">
-                    Essen
-                </div>
-            </div>
-            <div class="appointment label-yellow">
-                <div class="appointment-header">
-                    <div>10:00 &hellip; 10:20</div>
-                    <div class="unimportant">20m</div>
-                </div>
-                <div class="appointment-body">
-                    Essen
-                </div>
-            </div>
-            <p class="gap">2 hours</p>
-            <div class="appointment label-yellow">
-                <div class="appointment-header">
-                    <div>12:20 &hellip; 19:00</div>
-                    <div class="unimportant">6h40</div>
-                </div>
-                <div class="appointment-body">
-                    Schlafen
-                </div>
-            </div>
         </div>
         <div class="day">
             <div class="day-of-week">Tuesday</div>
-            <div class="appointment label-red">
-                <div class="appointment-header">
-                    <div>14:00 &hellip; 14:20</div>
-                    <div class="unimportant">20m</div>
-                </div>
-                <div class="appointment-body">
-                    Aufstehen
-                </div>
-            </div>
-            <div class="appointment label-red">
-                <div class="appointment-header">
-                    <div>14:20 &hellip; 15:00</div>
-                    <div class="unimportant">40m</div>
-                </div>
-                <div class="appointment-body">
-                    Wach werden
-                </div>
-            </div>
         </div>
         <div class="day">
             <div class="day-of-week">Wednesday</div>
@@ -79,8 +33,19 @@
         <div class="day">
             <div class="day-of-week">Sunday</div>
         </div>
-
     </div>
+
+    <template id="appointment-template">
+            <div class="appointment">
+                <div class="appointment-header">
+                    <div class="start">10:00 &hellip; 10:20</div>
+                    <div class="duration">20m</div>
+                </div>
+                <div class="appointment-body">
+                    Essen
+                </div>
+            </div>
+    </template>
 </body>
 
 </html>
