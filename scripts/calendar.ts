@@ -1,47 +1,3 @@
-class Appointment {
-
-    constructor(
-        public start: Date,
-        public end: Date,
-        public label: string,
-        public name: string,
-    ) {
-    }
-
-    getDuration(): string {
-        let durationInSeconds = (this.end.getTime() - this.start.getTime()) / 1000;
-
-        let returnString = '';
-        if (durationInSeconds > 3600) {
-            const hours = Math.floor(durationInSeconds / 3600);
-            returnString += hours + 'h'
-            durationInSeconds -= hours * 60*60;
-        }
-
-        if (durationInSeconds > 60) {
-            const minutes = Math.floor(durationInSeconds / 60);
-            returnString += minutes + 'm'
-            durationInSeconds -= minutes * 60;
-        }
-
-        if (durationInSeconds !== 0) {
-            returnString += durationInSeconds + 's';
-        }
-
-        return returnString
-    }
-
-    getStart(): string {
-        return this.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); ;
-    }
-
-    getEnd(): string {
-        return this.end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); ;
-    }
-}
-
-let s: string = 'Hello';
-
 const appointments: Appointment[] = [
     new Appointment(
         new Date('2021-06-24 15:00:00'),
@@ -60,16 +16,44 @@ const appointments: Appointment[] = [
         new Date('2021-06-27 10:20'),
         'yellow',
         "Essen"
-    )
+    ),
+    new Appointment(
+        new Date('2021-06-27 11:00'),
+        new Date('2021-06-27 11:20'),
+        'yellow',
+        "Essen"
+    ),
 ]
 
 function loadAppointments() {
-    const dayElements = [...document.querySelectorAll('.day-of-week')]
-    for(let appointment of appointments) {
+    const dayElements = [...document.querySelectorAll('.day')]
+    const appointmentsByDay: Appointment[][] = Array(7).map(() => [])
+    for (let appointment of appointments) {
         const startWeekday = (appointment.start.getDay() + 6) % 7
+        const dayElement = dayElements[startWeekday];
+        let appointmentForCurrentDay = appointmentsByDay[startWeekday]
+        if (appointmentForCurrentDay === undefined) {
+            appointmentForCurrentDay = [];
+            appointmentsByDay[startWeekday] = appointmentForCurrentDay;
+        }
 
-        dayElements[startWeekday].parentElement?.append(generateAppointmentHTML(appointment))
+        if (appointmentForCurrentDay.length > 0) {
+            const endLast = appointmentForCurrentDay[appointmentForCurrentDay.length - 1].end
+            const duration = appointment.start.getTime() - endLast.getTime()
+            dayElement.append(generateGap(duration))
+        }
+        dayElement.append(generateAppointmentHTML(appointment));
+
+        appointmentForCurrentDay.push(appointment)
     }
+}
+
+function generateGap(duration: number): HTMLElement {
+    const element = document.createElement('p');
+    element.innerText = formatTime(duration)
+    element.classList.add('gap')
+
+    return element
 }
 
 function generateAppointmentHTML(appointment: Appointment): HTMLElement {
