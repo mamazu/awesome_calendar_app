@@ -24,10 +24,10 @@ const locale = 'de-DE'
 export class Appointment {
 
     constructor(
+        public name: string,
         public start: Date,
         public end: Date,
         public label: string,
-        public name: string,
     ) {
     }
 

@@ -6,17 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <!-- Time selector -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Own logic -->
     <script src="dist/calendar.js" type="module"></script>
     <script type="module">
-        import { loadAppointments } from './dist/calendar.js'
+        import { loadAppointments, submitNewEventForm } from './dist/calendar.js'
+
         loadAppointments()
+
+        document.querySelector('#newEventForm').addEventListener('submit', submitNewEventForm)
+
+        // Setting up the time picker
+        flatpickr("#appointment-start-picker", {
+            enableTime: true, 
+            time_24hr: true,
+        });
+        flatpickr("#appointment-end-picker", {enableTime: true, time_24hr: true});
     </script>
     <title>Awesome Calendar App</title>
 </head>
 
 <body>
-    <form>
-        <button onclick="clearAppointments()">Submit</button>
+    <form id="newEventForm">
+        <label>
+            Name
+            <input type="text" name="name" value="ABC" required />
+        </label>
+
+        <label>
+            Start Time
+            <input name="start" id="appointment-start-picker" required readonly />
+        </label>
+
+        <label>
+            End Time
+            <input name="end" id="appointment-end-picker" required readonly />
+        </label>
+
+        <button>Submit</button>
     </form>
     <div id="calendar">
         <div class="day">

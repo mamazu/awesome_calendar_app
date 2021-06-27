@@ -2,28 +2,28 @@ import { Appointment, formatTime } from './Model/Appointment.js'
 
 const appointments: Appointment[] = [
     new Appointment(
+        'Testen',
         new Date('2021-06-24 15:00:00'),
         new Date('2021-06-24 16:20:00'),
         'red',
-        'Testen'
     ),
     new Appointment(
+        'Testen',
         new Date('2021-06-25 15:00:00'),
         new Date('2021-06-25 16:00:00'),
         'gray',
-        'Testen'
     ),
     new Appointment(
+        "Essen",
         new Date('2021-06-27 10:00'),
         new Date('2021-06-27 10:20'),
         'yellow',
-        "Essen"
     ),
     new Appointment(
+        "Essen",
         new Date('2021-06-27 11:00'),
         new Date('2021-06-27 11:20'),
         'yellow',
-        "Essen"
     ),
 ]
 
@@ -56,6 +56,28 @@ function generateGap(duration: number): HTMLElement {
     element.classList.add('gap')
 
     return element
+}
+
+export function submitNewEventForm(event: Event) {
+    event.preventDefault()
+    const formData = new FormData(event.target as HTMLFormElement)
+
+    const appointment = new Appointment(
+        String(formData.get('name')),
+        new Date(String(formData.get('start'))),
+        new Date(String(formData.get('end'))),
+        'yellow'
+    )
+    
+    appointments.push(appointment)
+    rerenderAppointments()
+}
+
+function rerenderAppointments() {
+    const appointments = [...document.querySelectorAll('#calendar .appointment'), ...document.querySelectorAll('#calendar .gap')]
+    appointments.forEach(element => element.remove())
+
+    loadAppointments()
 }
 
 function generateAppointmentHTML(appointment: Appointment): HTMLElement {
