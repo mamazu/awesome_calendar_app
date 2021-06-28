@@ -19,7 +19,7 @@ export function formatTime(durationInSeconds: number): string {
     return returnString
 }
 
-export class Appointment {
+export default class AppointmentData {
     static locale = 'de-DE';
 
     constructor(
@@ -27,20 +27,19 @@ export class Appointment {
         public start: Date,
         public end: Date,
         public label: string,
-    ) {
-    }
+    ) { }
 
     getDuration(): string {
-        let durationInMilliSeconds = (this.end.getTime() - this.start.getTime());
+        let durationInMilliSeconds = (this.end.getTime() - this.start.getTime())
         let durationInSeconds = durationInMilliSeconds / 1000
         return formatTime(durationInSeconds)
     }
 
     getStartTime(): string {
-        return this.start.toLocaleTimeString(Appointment.locale, { hour: '2-digit', minute: '2-digit' });;
+        return this.start.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })
     }
 
     getEndTime(): string {
-        return this.end.toLocaleTimeString(Appointment.locale, { hour: '2-digit', minute: '2-digit' });;
+        return this.end.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })
     }
 }

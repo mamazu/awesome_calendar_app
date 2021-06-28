@@ -1,0 +1,18 @@
+.Calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: .5em;
+}
+
+.day .day-of-week {
+    background-color: gray;
+    padding: .5em 0em;
+    margin-bottom: .5em;
+    text-align: center;
+    font-weight: bold;
+    min-width: 10.2em;
+}
+
+.gap {
+    text-align: center;
+}

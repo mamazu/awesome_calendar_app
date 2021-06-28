@@ -1,17 +1,26 @@
 {
-    "extends": "@tsconfig/recommended",
-    "compilerOptions": {
-        "target": "es6",
-        "sourceMap": true,
-        "outDir": "dist",
-        "alwaysStrict": true,
-        "module": "ES6"
-    },
-    "include": [
-        "scripts/**/*"
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src"
+  ]
 }
