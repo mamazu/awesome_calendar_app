@@ -21,7 +21,6 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
             appointments: props.appointments,
             startOfTheWeek: new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 1))
         }
-        console.log(this.state.startOfTheWeek)
     }
 
     getGap(appointments: AppointmentData[], index: number) {
@@ -49,7 +48,11 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
             {appointmentsOnCurrentDay.map((appoinment, index) => {
                 return <div key={index}>
                     {this.getGap(appointmentsOnCurrentDay, index)}
-                    <Appointment key={index} appointment={appoinment} />
+                    <Appointment
+                        key={index}
+                        appointment={appoinment}
+                        appointmentUpdateFunction={this.updateAppointment}
+                    />
                 </div>
             })}
         </div>
@@ -58,6 +61,20 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
     addAppointment(appointment: AppointmentData): void {
         this.setState({
             appointments: [...this.state.appointments, appointment]
+        })
+    }
+
+    updateAppointment = (appointment: AppointmentData, newAppointmentData: AppointmentData): void => {
+        this.setState({
+            appointments: this.state.appointments.map(
+                (current): AppointmentData => {
+                    if (appointment === current) {
+                        return newAppointmentData
+                    }
+
+                    return current;
+                }
+            ),
         })
     }
 

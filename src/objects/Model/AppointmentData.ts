@@ -29,17 +29,4 @@ export default class AppointmentData {
         public label: string,
     ) { }
 
-    getDuration(): string {
-        let durationInMilliSeconds = (this.end.getTime() - this.start.getTime())
-        let durationInSeconds = durationInMilliSeconds / 1000
-        return formatTime(durationInSeconds)
-    }
-
-    getStartTime(): string {
-        return this.start.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })
-    }
-
-    getEndTime(): string {
-        return this.end.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })
-    }
 }
