@@ -62,16 +62,13 @@ class Appointment extends React.Component<AppointmentProps, AppointmentState> {
             appointmentBody = <div className="appointment-body">{appointment.name}</div>;
         }
 
-        return <div>
-            <div className={appointmentCssClasses} data-testid="Appointment" onDoubleClick={this.enableEditMode}>
+        return <div className={appointmentCssClasses} data-testid="Appointment" onDoubleClick={this.enableEditMode}>
                 <div className="appointment-header">
                     <div className="start">{this.formatDate(appointment.start)} &hellip; {this.formatDate(appointment.end)}</div>
                     <div className="duration">{this.getDuration(appointment)}</div>
                 </div>
                 {appointmentBody}
-            </div>
-        </div>
-            ;
+            </div>;
     }
 }
 

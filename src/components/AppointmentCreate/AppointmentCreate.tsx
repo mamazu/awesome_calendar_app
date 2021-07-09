@@ -69,7 +69,7 @@ class AppointmentCreate extends React.Component<AppointmentCreateProps, Appointm
     render() {
         const options: flatpickr.Options.Options = { enableTime: true, time_24hr: true }
 
-        return <form onSubmit={this.handleSubmit.bind(this)}>
+        return <form onSubmit={this.handleSubmit.bind(this)} data-testid="AppointmentCreate">
             <label>
                 Name:
                 <input name="name" type="text" value={this.state.name} onChange={this.changeName.bind(this)} required />

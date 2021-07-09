@@ -8,7 +8,9 @@ describe('<Appointment />', () => {
     test('it should mount', () => {
         const date = new Date();
         const appointmentData = new AppointmentData('test', date, date, 'yellow');
-        render(<Appointment appointment={appointmentData} />);
+
+        let updateFunction = (a, b) => {};
+        render(<Appointment appointment={appointmentData} appointmentUpdateFunction={updateFunction}/>);
 
         const appointment = screen.getByTestId('Appointment');
 

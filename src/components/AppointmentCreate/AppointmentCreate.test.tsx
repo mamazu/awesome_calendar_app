@@ -8,8 +8,8 @@ describe('<Appointment />', () => {
     test('it should mount', () => {
         render(<AppointmentCreate onSubmit={(appointment: AppointmentData) => {return;}} />);
 
-        const appointment = screen.getByTestId('Appointment');
+        const appointmentCreate = screen.getByTestId('AppointmentCreate');
 
-        expect(appointment).toBeInTheDocument();
+        expect(appointmentCreate).toBeInTheDocument();
     });
 });
