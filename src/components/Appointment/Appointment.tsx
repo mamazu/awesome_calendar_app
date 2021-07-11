@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import AppointmentData, { formatTime } from '../../objects/Model/AppointmentData';
 import './Appointment.css';
 
@@ -19,12 +19,15 @@ class Appointment extends React.Component<AppointmentProps, AppointmentState> {
         }
     }
 
-    enableEditMode = (): void => this.setState({ inEditingMode: true })
+    enableEditMode = (): void => {
+        this.setState({ inEditingMode: true })
+    }
+
     disableEditMode = (): void => this.setState({ inEditingMode: false })
 
     handleNameChange = (e: React.FormEvent) => {
         const nameElement = (e.target as HTMLInputElement);
-     
+
         const currentAppointment = this.props.appointment
         const newObject = Object.assign({}, currentAppointment)
         newObject.name = nameElement.value
@@ -32,13 +35,13 @@ class Appointment extends React.Component<AppointmentProps, AppointmentState> {
     }
 
     handleEnter = (e: React.KeyboardEvent) => {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
             this.disableEditMode()
         }
     }
 
     formatDate(date: Date): string {
-        return date.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })   
+        return date.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })
     }
 
     getDuration(appointment: AppointmentData): string {
@@ -53,22 +56,23 @@ class Appointment extends React.Component<AppointmentProps, AppointmentState> {
 
         let appointmentBody;
         if (this.state.inEditingMode) {
-            appointmentBody = <input defaultValue={appointment.name} 
-            onChange={this.handleNameChange} 
-            onKeyDown={this.handleEnter} 
-            onBlur={this.disableEditMode}
-        />
+            appointmentBody = <input defaultValue={appointment.name}
+                onChange={this.handleNameChange}
+                onKeyDown={this.handleEnter}
+                onBlur={this.disableEditMode}
+                autoFocus
+            />
         } else {
             appointmentBody = <div className="appointment-body">{appointment.name}</div>;
         }
 
         return <div className={appointmentCssClasses} data-testid="Appointment" onDoubleClick={this.enableEditMode}>
-                <div className="appointment-header">
-                    <div className="start">{this.formatDate(appointment.start)} &hellip; {this.formatDate(appointment.end)}</div>
-                    <div className="duration">{this.getDuration(appointment)}</div>
-                </div>
-                {appointmentBody}
-            </div>;
+            <div className="appointment-header">
+                <div className="start">{this.formatDate(appointment.start)} &hellip; {this.formatDate(appointment.end)}</div>
+                <div className="duration">{this.getDuration(appointment)}</div>
+            </div>
+            {appointmentBody}
+        </div>;
     }
 }
 
