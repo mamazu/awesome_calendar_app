@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import AppointmentData, { formatTime } from '../../objects/Model/AppointmentData';
 import './Appointment.css';
 
@@ -40,7 +40,11 @@ class Appointment extends React.Component<AppointmentProps, AppointmentState> {
         }
     }
 
-    formatDate(date: Date): string {
+    public static formatDate(date: Date): string {
+        return date.toLocaleDateString(AppointmentData.locale, { day: '2-digit', month: '2-digit', year: 'numeric' })
+    }
+
+    public static formatTime(date: Date): string {
         return date.toLocaleTimeString(AppointmentData.locale, { hour: '2-digit', minute: '2-digit' })
     }
 
@@ -68,7 +72,7 @@ class Appointment extends React.Component<AppointmentProps, AppointmentState> {
 
         return <div className={appointmentCssClasses} data-testid="Appointment" onDoubleClick={this.enableEditMode}>
             <div className="appointment-header">
-                <div className="start">{this.formatDate(appointment.start)} &hellip; {this.formatDate(appointment.end)}</div>
+                <div className="start">{Appointment.formatTime(appointment.start)} &hellip; {Appointment.formatTime(appointment.end)}</div>
                 <div className="duration">{this.getDuration(appointment)}</div>
             </div>
             {appointmentBody}
