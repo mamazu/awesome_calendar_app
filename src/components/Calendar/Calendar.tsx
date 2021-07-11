@@ -1,7 +1,7 @@
 import React, { FormEvent } from 'react';
 import AppointmentData from '../../objects/Model/AppointmentData';
-import CompactView from '../CompactView/CompactView';
-import AgendaView from '../AgendaView/AgendaView';
+import CompactView from '../CalendarViews/CompactView/CompactView';
+import AgendaView from '../CalendarViews/AgendaView/AgendaView';
 import AppointmentCreate from '../AppointmentCreate/AppointmentCreate';
 import './Calendar.css';
 

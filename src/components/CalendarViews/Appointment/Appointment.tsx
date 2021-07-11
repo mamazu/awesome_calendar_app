@@ -1,5 +1,5 @@
 import React from 'react';
-import AppointmentData, { formatTime } from '../../objects/Model/AppointmentData';
+import AppointmentData, { formatTime } from '../../../objects/Model/AppointmentData';
 import './Appointment.css';
 
 type AppointmentProps = {

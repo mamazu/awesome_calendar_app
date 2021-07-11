@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import AppointmentData, { formatTime } from '../../objects/Model/AppointmentData';
+import AppointmentData, { formatTime } from '../../../objects/Model/AppointmentData';
 import Appointment from '../Appointment/Appointment';
 
 type CompactViewProps = {
