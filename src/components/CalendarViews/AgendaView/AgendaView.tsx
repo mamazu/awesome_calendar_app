@@ -13,10 +13,18 @@ class AgendaView extends Component<AgendaViewProps>{
     }
 
     render() {
+        let lastAppointmentStartDate: string;
         return <div className="AgendaView" data-testid="AgendaView">
             {this.props.appointments.map((appointment: AppointmentData, key: number) => {
+                let shouldRenderDate = false
+                const currentStartDate = Appointment.formatDate(appointment.start)
+                if (lastAppointmentStartDate !== currentStartDate) {
+                    lastAppointmentStartDate = currentStartDate;
+                    shouldRenderDate = true;
+                }
+
                 return <div key={key}>
-                    <p>{Appointment.formatDate(appointment.start)}</p>
+                    {shouldRenderDate && <p>{currentStartDate}</p>}
                     <Appointment appointment={appointment} appointmentUpdateFunction={this.props.updateAppointment} />
                 </div>
             })}
