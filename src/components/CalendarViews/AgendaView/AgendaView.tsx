@@ -24,7 +24,7 @@ class AgendaView extends Component<AgendaViewProps>{
                 }
 
                 return <div key={key}>
-                    {shouldRenderDate && <p>{currentStartDate}</p>}
+                    {shouldRenderDate && <p data-testid="newDate">{currentStartDate}</p>}
                     <Appointment appointment={appointment} appointmentUpdateFunction={this.props.updateAppointment} />
                 </div>
             })}
