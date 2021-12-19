@@ -1,0 +1,13 @@
+.sidebar {
+    background: lightblue;
+    min-width: 11em;
+    padding: 0.5em;
+}
+
+.sidebar .logo {
+    font-weight: bold;
+}
+
+.sidebar .logo span {
+    color: red
+}

@@ -23,6 +23,10 @@ class AppointmentCreate extends React.Component<AppointmentCreateProps, Appointm
         this.state = {
             name: "",
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.changeName = this.changeName.bind(this)
+        this.changeStart = this.changeStart.bind(this)
+        this.changeEnd = this.changeEnd.bind(this)
     }
 
     changeName(event: FormEvent): void {
@@ -50,7 +54,6 @@ class AppointmentCreate extends React.Component<AppointmentCreateProps, Appointm
     handleSubmit(event: FormEvent): void {
         event.preventDefault()
 
-        console.log(this.state)
         if (this.state.start === undefined || this.state.end === undefined) {
             console.log('State invalid')
             return;
@@ -62,25 +65,24 @@ class AppointmentCreate extends React.Component<AppointmentCreateProps, Appointm
             this.state.end,
             'yellow'
         )
-        console.log(appointment)
         this.props.onSubmit(appointment)
     }
 
     render() {
         const options: flatpickr.Options.Options = { enableTime: true, time_24hr: true }
 
-        return <form onSubmit={this.handleSubmit.bind(this)} data-testid="AppointmentCreate">
+        return <form onSubmit={this.handleSubmit} data-testid="AppointmentCreate">
             <label>
                 Name:
-                <input name="name" type="text" value={this.state.name} onChange={this.changeName.bind(this)} required />
+                <input name="name" type="text" value={this.state.name} onChange={this.changeName} required />
             </label>
             <label>
                 Begin:
-                <Flatpickr data-enable-time options={options} onChange={this.changeStart.bind(this)} required />
+                <Flatpickr data-enable-time options={options} onChange={this.changeStart} required />
             </label>
             <label>
                 End:
-                <Flatpickr data-enable-time options={options} onChange={this.changeEnd.bind(this)} required />
+                <Flatpickr data-enable-time options={options} onChange={this.changeEnd} required />
             </label>
 
             <button type="submit">Submit</button>

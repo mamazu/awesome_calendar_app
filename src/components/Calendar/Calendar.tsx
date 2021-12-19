@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import { Component } from 'react';
 import AppointmentData from '../../objects/Model/AppointmentData';
 import CompactView from '../CalendarViews/CompactView/CompactView';
 import AgendaView from '../CalendarViews/AgendaView/AgendaView';
@@ -6,17 +6,18 @@ import AppointmentCreate from '../AppointmentCreate/AppointmentCreate';
 import './Calendar.css';
 
 type CalendarProps = {
-    appointments: AppointmentData[]
+    appointments: AppointmentData[],
+    currentView: ViewValue
 }
 
-type ViewValue = 'compact' | 'agenda';
+export type ViewValue = 'compact' | 'agenda';
 type CalendarState = {
     appointments: AppointmentData[]
     startOfTheWeek: Date
     currentView: ViewValue
 }
 
-class Calendar extends React.Component<CalendarProps, CalendarState> {
+class Calendar extends Component<CalendarProps, CalendarState> {
     constructor(props: Readonly<CalendarProps> | CalendarProps) {
         super(props)
 
@@ -48,22 +49,14 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
         })
     }
 
-    updateViewState = (event: FormEvent): void => {
-        const value = (event.target as HTMLSelectElement).value as ViewValue
-
-        this.setState({
-            currentView: value
-        })
-    }
-
-    getView() {
-        if (this.state.currentView === 'compact')
+    renderView() {
+        if (this.props.currentView === 'compact')
             return <CompactView
                 appointments={this.state.appointments}
                 updateAppointment={this.updateAppointment}
                 startOfTheWeek={this.state.startOfTheWeek}
             />
-        if (this.state.currentView === 'agenda') {
+        if (this.props.currentView === 'agenda') {
             return <AgendaView
                 appointments={this.state.appointments}
                 updateAppointment={this.updateAppointment}
@@ -74,11 +67,7 @@ class Calendar extends React.Component<CalendarProps, CalendarState> {
     render() {
         return <div>
             <AppointmentCreate onSubmit={(appointment) => this.addAppointment(appointment)} />
-            <select onChange={this.updateViewState} defaultValue={this.state.currentView}>
-                <option value="agenda">Agenda</option>
-                <option value="compact">Compact</option>
-            </select>
-            {this.getView()}
+            {this.renderView()}
         </div>
     }
 }

@@ -1,7 +1,8 @@
-import React from 'react';
-import Calendar from './components/Calendar/Calendar';
+import React, { useState } from 'react';
+import Calendar, {ViewValue} from './components/Calendar/Calendar';
 import './App.css';
 import AppointmentData from './objects/Model/AppointmentData';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
     const appointments = [
@@ -31,9 +32,12 @@ function App() {
         ),
     ];
 
+    const [currentView, updateViewState] = useState<ViewValue>('compact');
+
     return (
         <div className="App" data-testid="App">
-            <Calendar appointments={appointments} />
+            <Sidebar updateViewState={updateViewState} currentView={currentView} />
+            <Calendar appointments={appointments} currentView={currentView} />
         </div>
     );
 }
