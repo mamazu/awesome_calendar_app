@@ -1,6 +1,7 @@
 import React, { FormEvent } from 'react';
 import './AppointmentCreate.css';
 import AppointmentData from '../../objects/Model/AppointmentData';
+import PopUp from '../Popup/Popup';
 
 // Importing flatpickr
 import "flatpickr/dist/themes/material_green.css";
@@ -13,6 +14,7 @@ type AppointmentCreateProps = {
 
 type AppointmentCreateState = {
     name: string,
+    popupOpen: boolean,
     start?: Date,
     end?: Date
 }
@@ -22,6 +24,7 @@ class AppointmentCreate extends React.Component<AppointmentCreateProps, Appointm
         super(props)
         this.state = {
             name: "",
+            popupOpen: false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.changeName = this.changeName.bind(this)
@@ -66,27 +69,41 @@ class AppointmentCreate extends React.Component<AppointmentCreateProps, Appointm
             'yellow'
         )
         this.props.onSubmit(appointment)
+        this.togglePopUp()
+    }
+
+    togglePopUp() {
+        this.setState({
+            ...this.state,
+            popupOpen: !this.state.popupOpen
+        })
     }
 
     render() {
         const options: flatpickr.Options.Options = { enableTime: true, time_24hr: true }
 
-        return <form onSubmit={this.handleSubmit} data-testid="AppointmentCreate">
-            <label>
-                Name:
-                <input name="name" type="text" value={this.state.name} onChange={this.changeName} required />
-            </label>
-            <label>
-                Begin:
-                <Flatpickr data-enable-time options={options} onChange={this.changeStart} required />
-            </label>
-            <label>
-                End:
-                <Flatpickr data-enable-time options={options} onChange={this.changeEnd} required />
-            </label>
+        return <>
+            <button onClick={this.togglePopUp.bind(this)}>Create</button>
 
-            <button type="submit">Submit</button>
-        </form>
+            <PopUp shown={this.state.popupOpen} togglePopup={this.togglePopUp.bind(this)}>
+                <form onSubmit={this.handleSubmit} data-testid="AppointmentCreate">
+                    <label>
+                    Name:
+                    <input name="name" type="text" value={this.state.name} onChange={this.changeName} required />
+                    </label>
+                    <label>
+                    Begin:
+                    <Flatpickr data-enable-time options={options} onChange={this.changeStart} required />
+                    </label>
+                    <label>
+                    End:
+                    <Flatpickr data-enable-time options={options} onChange={this.changeEnd} required />
+                    </label>
+
+                    <button type="submit">Submit</button>
+                    </form>
+            </PopUp>
+        </>
     }
 }
 
